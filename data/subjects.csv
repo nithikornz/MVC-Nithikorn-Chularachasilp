@@ -1,0 +1,12 @@
+subjectId,name,credits,prerequisiteSubjectId,maxSeats,currentEnrolled
+05500001,Intro to CS,3,,40,0
+05500002,Programming I,3,,40,0
+05500003,Programming II,3,0550002,35,0
+05500004,Data Structures,3,0550003,30,0
+05500005,Algorithms,3,0550004,30,0
+05500006,Databases,3,0550002,30,0
+05500007,Operating Systems,3,0550003,25,0
+05500008,Computer Networks,3,0550003,25,0
+90690001,Critical Thinking,2,,10,0
+90690002,Communication,2,,5,0
+90690003,Art,2,,5,0

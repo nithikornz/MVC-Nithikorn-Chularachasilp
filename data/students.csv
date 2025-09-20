@@ -1,0 +1,16 @@
+studentId,prefix,firstName,lastName,birthDate,school,email
+69000001,Ms.,Stu1,Last1,2010-04-07,Math-High,stu1@example.com
+69000002,Miss,Stu2,Last2,2009-10-14,Bio-High,stu2@example.com
+69000003,Mr.,Stu3,Last3,2010-11-25,Bio-High,stu3@example.com
+69000004,Mr.,Stu4,Last4,2007-10-03,Bio-High,stu4@example.com
+69000005,Ms.,Stu5,Last5,2009-11-26,Sci-High,stu5@example.com
+69000006,Ms.,Stu6,Last6,2007-01-21,Tech-High,stu6@example.com
+69000007,Miss,Stu7,Last7,2009-06-28,Math-High,stu7@example.com
+69000008,Miss,Stu8,Last8,2007-11-24,Bio-High,stu8@example.com
+69000009,Ms.,Stu9,Last9,2009-06-28,Tech-High,stu9@example.com
+69000010,Mr.,Stu10,Last10,2005-05-06,Bio-High,stu10@example.com
+69000011,Miss,Stu11,Last11,2008-06-20,Math-High,stu11@example.com
+69000012,Ms.,Stu12,Last12,2006-01-05,Tech-High,stu12@example.com
+69000013,Mr.,Stu13,Last13,2005-03-24,Math-High,stu13@example.com
+69000014,Mr.,Stu14,Last14,2008-04-18,Sci-High,stu14@example.com
+69000015,Ms.,Stu15,Last15,2010-11-02,Tech-High,stu15@example.com
