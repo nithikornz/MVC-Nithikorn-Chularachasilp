@@ -26,7 +26,7 @@ public class AppFrame extends JFrame {
     private JTextField txtStudentId;
     private JTable tblSubjects;
 
-    private JLabel lblId, lblName, lblCredits, lblPrereq, lblMax, lblEnrolled;
+    private JLabel lblId, lblName, lblInstructor, lblCredits, lblPrereq, lblMax, lblEnrolled; // add lblInstructor
 
     private JLabel lblProfileHeader;
     private JTable tblProfileEnrolls;
@@ -47,7 +47,7 @@ public class AppFrame extends JFrame {
     }
 
     // Login Page
-    private JPanel buildLoginPage() {
+    private JPanel buildLoginPage() { /* (เหมือนเดิมของคุณ) */
         JPanel p = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(6, 6, 6, 6);
@@ -78,9 +78,8 @@ public class AppFrame extends JFrame {
                 return;
             }
             currentStudentId = sid;
-            showRegister(); // จะ refresh ตารางอัตโนมัติ
+            showRegister();
         });
-
         return p;
     }
 
@@ -90,7 +89,7 @@ public class AppFrame extends JFrame {
         JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         top.add(new JLabel("Student ID:"));
         txtStudentId = new JTextField(12);
-        txtStudentId.setEditable(false); // fixed to session
+        txtStudentId.setEditable(false);
         top.add(txtStudentId);
 
         JButton btnDetail = new JButton("View Detail");
@@ -107,11 +106,11 @@ public class AppFrame extends JFrame {
         top.add(btnEnroll);
         top.add(btnProfile);
         top.add(btnLogout);
-
         page.add(top, BorderLayout.NORTH);
 
+        // เพิ่มคอลัมน์ Instructor
         tblSubjects = new JTable(new DefaultTableModel(
-                new String[] { "Subject ID", "Name", "Credits", "Prereq", "Max", "Enrolled" }, 0) {
+                new String[] { "Subject ID", "Name", "Instructor", "Credits", "Prereq", "Max", "Enrolled" }, 0) {
             @Override
             public boolean isCellEditable(int r, int c) {
                 return false;
@@ -134,7 +133,10 @@ public class AppFrame extends JFrame {
         m.setRowCount(0);
         for (Subject s : list) {
             m.addRow(new Object[] {
-                    s.getSubjectId(), s.getName(), s.getCredits(),
+                    s.getSubjectId(),
+                    s.getName(),
+                    s.getInstructor(), // NEW
+                    s.getCredits(),
                     s.getPrerequisiteSubjectId() == null ? "-" : s.getPrerequisiteSubjectId(),
                     s.getMaxSeats() == -1 ? "∞" : s.getMaxSeats(),
                     s.getCurrentEnrolled()
@@ -167,7 +169,8 @@ public class AppFrame extends JFrame {
         }
         String subId = tblSubjects.getValueAt(r, 0).toString();
         try {
-            controller.register(currentStudentId, subId); // in-memory only
+            // controller.register ใช้ LocalDate.now() ภายใน controller
+            controller.register(currentStudentId, subId);
             JOptionPane.showMessageDialog(this, "Enroll success");
             showProfile(currentStudentId);
         } catch (Exception ex) {
@@ -175,7 +178,7 @@ public class AppFrame extends JFrame {
         }
     }
 
-    // Subject Detail Page 
+    // Subject Detail Page
     private JPanel buildSubjectDetailPage() {
         JPanel page = new JPanel(new BorderLayout(8, 8));
         JLabel header = new JLabel("Subject Detail", SwingConstants.CENTER);
@@ -190,6 +193,7 @@ public class AppFrame extends JFrame {
 
         lblId = new JLabel("-");
         lblName = new JLabel("-");
+        lblInstructor = new JLabel("-"); // NEW
         lblCredits = new JLabel("-");
         lblPrereq = new JLabel("-");
         lblMax = new JLabel("-");
@@ -197,10 +201,11 @@ public class AppFrame extends JFrame {
 
         addRow(center, c, 0, "Subject ID:", lblId);
         addRow(center, c, 1, "Name:", lblName);
-        addRow(center, c, 2, "Credits:", lblCredits);
-        addRow(center, c, 3, "Prerequisite:", lblPrereq);
-        addRow(center, c, 4, "Max Seats:", lblMax);
-        addRow(center, c, 5, "Current Enrolled:", lblEnrolled);
+        addRow(center, c, 2, "Instructor:", lblInstructor); // NEW
+        addRow(center, c, 3, "Credits:", lblCredits);
+        addRow(center, c, 4, "Prerequisite:", lblPrereq);
+        addRow(center, c, 5, "Max Seats:", lblMax);
+        addRow(center, c, 6, "Current Enrolled:", lblEnrolled);
 
         page.add(center, BorderLayout.CENTER);
 
@@ -218,7 +223,6 @@ public class AppFrame extends JFrame {
         c.gridy = y;
         JLabel k = new JLabel(label);
         panel.add(k, c);
-
         c.gridx = 1;
         value.setFont(value.getFont().deriveFont(Font.BOLD, 13f));
         panel.add(value, c);
@@ -229,6 +233,7 @@ public class AppFrame extends JFrame {
         if (s == null) {
             lblId.setText("N/A");
             lblName.setText("Not found");
+            lblInstructor.setText("-");
             lblCredits.setText("-");
             lblPrereq.setText("-");
             lblMax.setText("-");
@@ -237,14 +242,15 @@ public class AppFrame extends JFrame {
         }
         lblId.setText(s.getSubjectId());
         lblName.setText(s.getName());
+        lblInstructor.setText(s.getInstructor()); // NEW
         lblCredits.setText(String.valueOf(s.getCredits()));
         lblPrereq.setText(s.getPrerequisiteSubjectId() == null ? "-" : s.getPrerequisiteSubjectId());
         lblMax.setText(s.getMaxSeats() == -1 ? "∞" : String.valueOf(s.getMaxSeats()));
         lblEnrolled.setText(String.valueOf(s.getCurrentEnrolled()));
     }
 
-    // Student Profile Page 
-    private JPanel buildProfilePage() {
+    // Profile Page (เหมือนเดิม)
+    private JPanel buildProfilePage() { /* (เหมือนเดิมของคุณ) */
         JPanel page = new JPanel(new BorderLayout(8, 8));
         JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         lblProfileHeader = new JLabel("Student Profile");
