@@ -40,7 +40,7 @@ public class RegistrationService {
             }
         }
 
-        // Subjects (with instructor)
+        // Subjects 
         if (Files.exists(subjectsCsv)) {
             try (BufferedReader br = Files.newBufferedReader(subjectsCsv, StandardCharsets.UTF_8)) {
                 String line; boolean skip = true;

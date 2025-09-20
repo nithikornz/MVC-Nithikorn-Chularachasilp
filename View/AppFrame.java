@@ -108,7 +108,6 @@ public class AppFrame extends JFrame {
         top.add(btnLogout);
         page.add(top, BorderLayout.NORTH);
 
-        // เพิ่มคอลัมน์ Instructor
         tblSubjects = new JTable(new DefaultTableModel(
                 new String[] { "Subject ID", "Name", "Instructor", "Credits", "Prereq", "Max", "Enrolled" }, 0) {
             @Override
@@ -135,7 +134,7 @@ public class AppFrame extends JFrame {
             m.addRow(new Object[] {
                     s.getSubjectId(),
                     s.getName(),
-                    s.getInstructor(), // NEW
+                    s.getInstructor(), 
                     s.getCredits(),
                     s.getPrerequisiteSubjectId() == null ? "-" : s.getPrerequisiteSubjectId(),
                     s.getMaxSeats() == -1 ? "∞" : s.getMaxSeats(),
@@ -169,7 +168,6 @@ public class AppFrame extends JFrame {
         }
         String subId = tblSubjects.getValueAt(r, 0).toString();
         try {
-            // controller.register ใช้ LocalDate.now() ภายใน controller
             controller.register(currentStudentId, subId);
             JOptionPane.showMessageDialog(this, "Enroll success");
             showProfile(currentStudentId);
@@ -193,7 +191,7 @@ public class AppFrame extends JFrame {
 
         lblId = new JLabel("-");
         lblName = new JLabel("-");
-        lblInstructor = new JLabel("-"); // NEW
+        lblInstructor = new JLabel("-"); 
         lblCredits = new JLabel("-");
         lblPrereq = new JLabel("-");
         lblMax = new JLabel("-");
@@ -201,7 +199,7 @@ public class AppFrame extends JFrame {
 
         addRow(center, c, 0, "Subject ID:", lblId);
         addRow(center, c, 1, "Name:", lblName);
-        addRow(center, c, 2, "Instructor:", lblInstructor); // NEW
+        addRow(center, c, 2, "Instructor:", lblInstructor); 
         addRow(center, c, 3, "Credits:", lblCredits);
         addRow(center, c, 4, "Prerequisite:", lblPrereq);
         addRow(center, c, 5, "Max Seats:", lblMax);
@@ -249,8 +247,8 @@ public class AppFrame extends JFrame {
         lblEnrolled.setText(String.valueOf(s.getCurrentEnrolled()));
     }
 
-    // Profile Page (เหมือนเดิม)
-    private JPanel buildProfilePage() { /* (เหมือนเดิมของคุณ) */
+    // Profile Page 
+    private JPanel buildProfilePage() { 
         JPanel page = new JPanel(new BorderLayout(8, 8));
         JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         lblProfileHeader = new JLabel("Student Profile");

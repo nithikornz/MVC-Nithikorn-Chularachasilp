@@ -21,8 +21,7 @@ public class Subject {
         this.name = name;
         this.instructor = (instructor == null ? "" : instructor);
         this.credits = credits;
-        this.prerequisiteSubjectId = (prerequisiteSubjectId == null || prerequisiteSubjectId.isBlank()) ? null
-                : prerequisiteSubjectId;
+        this.prerequisiteSubjectId = (prerequisiteSubjectId == null || prerequisiteSubjectId.isBlank()) ? null : prerequisiteSubjectId;
         this.maxSeats = maxSeats;
         this.currentEnrolled = currentEnrolled;
     }
@@ -37,7 +36,7 @@ public class Subject {
 
     public String getInstructor() {
         return instructor;
-    } // <--- NEW
+    } 
 
     public int getCredits() {
         return credits;
